@@ -14,6 +14,8 @@ import com.ardoise.observer.Observateur;
 
 class Panneau extends JPanel implements Observateur {
 
+	private static final long serialVersionUID = -6478879529334101282L;
+
 	private List<Point> dessin = new ArrayList<Point>();
 	ModelArdoise model;
 

@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JMenuItem;
-
+import javax.swing.JComponent;
 import com.ardoise.model.Forme;
 import com.ardoise.model.ModelArdoise;
 
@@ -20,14 +19,12 @@ public class MenuListener implements ActionListener {
 	// Action des boutons du menu
 	public void actionPerformed(ActionEvent e) {
 		String s = "";
-		if (e.getSource().getClass() == JMenuItem.class) {
-			s = ((JMenuItem) (e.getSource())).getText();
-		}
+		s = ((JComponent) (e.getSource())).getName();
 		switch (s) {
 		case "Rond":
 			model.changerForme(Forme.ROND);
 			break;
-		case "Carré":
+		case "Carre":
 			model.changerForme(Forme.CARRE);
 			break;
 		case "Vert":
