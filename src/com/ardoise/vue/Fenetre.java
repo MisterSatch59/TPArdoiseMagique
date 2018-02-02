@@ -14,6 +14,7 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
 import com.ardoise.controleur.MenuListener;
+import com.ardoise.model.Forme;
 import com.ardoise.model.ModelArdoise;
 
 public class Fenetre extends JFrame {
@@ -36,18 +37,22 @@ public class Fenetre extends JFrame {
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
 		
+		Forme[] formes = Forme.values();//liste des formes
+		
 		//Création du menu
 		JMenuBar barreMenu=new JMenuBar();
 			JMenu fichier = new JMenu("Fichier");
 			fichier.setMnemonic('F');
 			barreMenu.add(fichier);
 				JMenuItem effacer = new JMenuItem("Effacer");
-				effacer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.CTRL_DOWN_MASK,KeyEvent.VK_N));
+				effacer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_DOWN_MASK));
+				effacer.setName("Effacer");
 				effacer.addActionListener(menuListener);
 				fichier.add(effacer);
 				fichier.addSeparator();
 				JMenuItem quitter = new JMenuItem("Quitter");
-				quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.CTRL_DOWN_MASK,KeyEvent.VK_Q));
+				quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,KeyEvent.CTRL_DOWN_MASK));
+				quitter.setName("Quitter");;
 				quitter.addActionListener(menuListener);
 				fichier.add(quitter);
 			JMenu edition = new JMenu("Edition");
@@ -56,17 +61,23 @@ public class Fenetre extends JFrame {
 				JMenu forme = new JMenu("Forme du pinceau");
 				forme.setMnemonic('O');
 				edition.add(forme);
-					JMenuItem rond = new JMenuItem("Rond");
-					rond.setName("Rond");
-					rond.addActionListener(menuListener);
-					forme.add(rond);
-					JMenuItem carre = new JMenuItem("Carré");
-					carre.setName("Carre");
-					carre.addActionListener(menuListener);
-					forme.add(carre);
+					for (Forme f : formes) {
+						JMenuItem formeMenu = new JMenuItem(f.toString());
+						formeMenu.setName(f.toString());
+						formeMenu.addActionListener(menuListener);
+						forme.add(formeMenu);
+					}
 				JMenu couleur = new JMenu("Couleur du pinceau");
 				couleur.setMnemonic('C');
 				edition.add(couleur);
+					JMenuItem bleu = new JMenuItem("Bleu");
+					bleu.setName("Bleu");
+					bleu.addActionListener(menuListener);
+					couleur.add(bleu);
+					JMenuItem noir = new JMenuItem("Noir");
+					noir.setName("Noir");
+					noir.addActionListener(menuListener);
+					couleur.add(noir);
 					JMenuItem rouge = new JMenuItem("Rouge");
 					rouge.setName("Rouge");
 					rouge.addActionListener(menuListener);
@@ -75,26 +86,38 @@ public class Fenetre extends JFrame {
 					vert.setName("Vert");
 					vert.addActionListener(menuListener);
 					couleur.add(vert);
-					JMenuItem bleu = new JMenuItem("Bleu");
-					bleu.setName("Bleu");
-					bleu.addActionListener(menuListener);
-					couleur.add(bleu);
+					JMenuItem palette = new JMenuItem("Palette de Couleur");
+					palette.setName("PaletteCouleur");
+					palette.addActionListener(menuListener);
+					couleur.add(palette);
+					
 			this.setJMenuBar(barreMenu);
 		
 		//Création de la barre d'outils
 		JToolBar barreOutils = new JToolBar();
-			JButton bRond = new JButton(new ImageIcon("images/rond.png"));
-			bRond.setName("Rond");
-			bRond.addActionListener(menuListener);
-			barreOutils.add(bRond);
-			JButton bCarre = new JButton(new ImageIcon("images/carre.png"));
-			bCarre.setName("Carre");
-			bCarre.addActionListener(menuListener);
-			barreOutils.add(bCarre);
-			
-			
+		
+			for (Forme f : formes) {
+				JButton bForme = new JButton(new ImageIcon(f.getAdresseIcon()));
+				bForme.setName(f.toString());
+				bForme.addActionListener(menuListener);
+				barreOutils.add(bForme);
+			}
+						
 			barreOutils.addSeparator();
 			
+			JButton bPalette = new JButton(new ImageIcon("images/palette.png"));
+			bPalette.setName("PaletteCouleur");
+			bPalette.addActionListener(menuListener);
+			barreOutils.add(bPalette);
+			
+			JButton bBleu = new JButton(new ImageIcon("images/bleu.png"));
+			bBleu.setName("Bleu");
+			bBleu.addActionListener(menuListener);
+			barreOutils.add(bBleu);
+			JButton bNoir= new JButton(new ImageIcon("images/noir.png"));
+			bNoir.setName("Noir");
+			bNoir.addActionListener(menuListener);
+			barreOutils.add(bNoir);
 			JButton bRouge = new JButton(new ImageIcon("images/rouge.png"));
 			bRouge.setName("Rouge");
 			bRouge.addActionListener(menuListener);
@@ -103,10 +126,6 @@ public class Fenetre extends JFrame {
 			bVert.setName("Vert");
 			bVert.addActionListener(menuListener);
 			barreOutils.add(bVert);
-			JButton bBleu = new JButton(new ImageIcon("images/bleu.png"));
-			bBleu.setName("Bleu");
-			bBleu.addActionListener(menuListener);
-			barreOutils.add(bBleu);
 		contentPane.add(barreOutils,BorderLayout.NORTH);
 		
 		//création du panneau de dessin

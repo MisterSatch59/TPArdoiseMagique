@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import com.ardoise.model.Forme;
 import com.ardoise.model.ModelArdoise;
@@ -20,13 +21,8 @@ public class MenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s = "";
 		s = ((JComponent) (e.getSource())).getName();
+		Forme[] formes = Forme.values();
 		switch (s) {
-		case "Rond":
-			model.changerForme(Forme.ROND);
-			break;
-		case "Carre":
-			model.changerForme(Forme.CARRE);
-			break;
 		case "Vert":
 			model.changerCouleur(Color.GREEN);
 			break;
@@ -36,6 +32,14 @@ public class MenuListener implements ActionListener {
 		case "Bleu":
 			model.changerCouleur(Color.BLUE);
 			break;
+		case "Noir":
+			model.changerCouleur(Color.BLACK);
+			break;
+		case "PaletteCouleur":
+			Color c = JColorChooser.showDialog((JComponent) (e.getSource()), "Choix de la couleur du pinceau",
+					model.getPinceau().getCouleur());
+			model.changerCouleur(c);
+			break;
 		case "Effacer":
 			model.reset();
 			break;
@@ -43,11 +47,13 @@ public class MenuListener implements ActionListener {
 			System.exit(0);
 			break;
 		default:
-			System.out.println("Erreur dans MenuListener");
+			for (Forme f : formes) {
+				if(f.toString()==s) {
+					model.changerForme(f);
+				}
+			}
 			break;
-
 		}
-
 	}
 
 }

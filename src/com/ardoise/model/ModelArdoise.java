@@ -43,7 +43,8 @@ public class ModelArdoise implements Observable {
 
 	// Ajouter un Point au dessin
 	public void ajouterPoint(int x, int y) {
-		Point p = new Point(x, y, pinceau);
+		int i = pinceau.getTaille() / 2;// pour centrer le point sur (x,y)
+		Point p = new Point(x - i, y - i, pinceau);
 		dessin.add(p);
 		updateObservateur();
 	}
@@ -66,6 +67,10 @@ public class ModelArdoise implements Observable {
 
 	public Forme getForme() {
 		return pinceau.getForme();
+	}
+
+	public Pinceau getPinceau() {
+		return pinceau;
 	}
 
 }

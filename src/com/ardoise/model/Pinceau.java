@@ -10,9 +10,9 @@ public class Pinceau {
 
 	// création d'un pinceau de base
 	public Pinceau() {
-		couleur = Color.RED;
+		couleur = Color.BLACK;
 		taille = 10;
-		forme = Forme.CARRE;
+		forme = Forme.ROND;
 	}
 
 	// modifier la couleur du pinceau

@@ -24,6 +24,7 @@ class Panneau extends JPanel implements Observateur {
 		this.model = model;
 		model.addObservateur(this);
 		this.addMouseMotionListener(new ArdoiseListener(model));
+		this.addMouseListener(new ArdoiseListener(model));
 	}
 
 	// Réalisation du dessin
