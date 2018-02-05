@@ -5,7 +5,7 @@ import java.util.List;
 import com.ardoise.model.Point;
 
 /**
- * <b>Interface du Patern Strategy pour attribuer le comportement
+ * <b>Interface du Patern Observer pour attribuer le comportement
  * Observateur</b>
  * 
  * @author Oltenos

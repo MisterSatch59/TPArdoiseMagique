@@ -1,7 +1,7 @@
 package com.ardoise.observer;
 
 /**
- * <b>Interface du Patern Strategy pour attribuer le comportement Observable</b>
+ * <b>Interface du Patern Observer pour attribuer le comportement Observable</b>
  * 
  * @author Oltenos
  * @version 1
