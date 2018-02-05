@@ -27,10 +27,6 @@ class Panneau extends JPanel implements Observateur {
 	 * @see Point
 	 */
 	private List<Point> dessin = new ArrayList<Point>();
-	/**
-	 * Modèle associé à l'ardoise
-	 */
-	ModelArdoise model;
 
 	/**
 	 * Constructeur de Panneau
@@ -40,7 +36,6 @@ class Panneau extends JPanel implements Observateur {
 	 */
 	public Panneau(ModelArdoise model) {
 		super();
-		this.model = model;
 		model.addObservateur(this);
 		this.addMouseMotionListener(new ArdoiseListener(model));
 		this.addMouseListener(new ArdoiseListener(model));

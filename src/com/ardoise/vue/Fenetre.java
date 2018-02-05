@@ -39,10 +39,6 @@ public class Fenetre extends JFrame {
 	 * Listener pour le menu et la barre d'outils.
 	 */
 	private MenuListener menuListener;
-	/**
-	 * Model de notre application.
-	 */
-	private ModelArdoise model;
 
 	/**
 	 * Constructeur de Fenetre.
@@ -54,7 +50,7 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 
-		model = new ModelArdoise();
+		ModelArdoise model = new ModelArdoise();
 		menuListener = new MenuListener(model);
 
 		contentPane.setLayout(new BorderLayout());
