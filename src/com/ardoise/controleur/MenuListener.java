@@ -3,21 +3,41 @@ package com.ardoise.controleur;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import com.ardoise.model.Forme;
 import com.ardoise.model.ModelArdoise;
 
+/**
+ * <b>La classe MenuListener permet la gestion des actions sur le menu et la
+ * barre d'outils</b> <br />
+ * Elle implemente ActionListener.
+ * 
+ * @see ActionListener
+ * @author Oltenos
+ * @version 1
+ */
 public class MenuListener implements ActionListener {
 
+	/**
+	 * Modèle associé à l'ardoise
+	 */
 	private ModelArdoise model;
 
+	/**
+	 * Constructeur avec transmission du modèle associé
+	 * 
+	 * @param model
+	 *            Modèle associé à l'ardoise
+	 */
 	public MenuListener(ModelArdoise model) {
 		this.model = model;
 	}
 
-	// Action des boutons du menu
+	/**
+	 * Notifie le modèle du changement associé à l'action sur le menu ou la barre
+	 * d'outils
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String s = "";
 		s = ((JComponent) (e.getSource())).getName();
@@ -48,7 +68,7 @@ public class MenuListener implements ActionListener {
 			break;
 		default:
 			for (Forme f : formes) {
-				if(f.toString()==s) {
+				if (f.toString() == s) {
 					model.changerForme(f);
 				}
 			}

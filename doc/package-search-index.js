@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"com.ardoise"},{"l":"com.ardoise.controleur"},{"l":"com.ardoise.model"},{"l":"com.ardoise.observer"},{"l":"com.ardoise.vue"}]

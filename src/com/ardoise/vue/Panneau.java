@@ -12,13 +12,32 @@ import com.ardoise.model.ModelArdoise;
 import com.ardoise.model.Point;
 import com.ardoise.observer.Observateur;
 
+/**
+ * <b>La class Panneau permet de gérer l'affichage du dessin</b>
+ * <br/>Elle hérite de JPanel
+ * 
+ * @author Oltenos
+ * @version 1
+ * @see JPanel
+ */
 class Panneau extends JPanel implements Observateur {
-
-	private static final long serialVersionUID = -6478879529334101282L;
-
+	/**
+	 * Liste des Point du dessin
+	 * 
+	 * @see Point
+	 */
 	private List<Point> dessin = new ArrayList<Point>();
+	/**
+	 * Modèle associé à l'ardoise
+	 */
 	ModelArdoise model;
 
+	/**
+	 * Constructeur de Panneau
+	 * 
+	 * @param model
+	 *            Modèle associé à l'ardoise
+	 */
 	public Panneau(ModelArdoise model) {
 		super();
 		this.model = model;
@@ -27,14 +46,16 @@ class Panneau extends JPanel implements Observateur {
 		this.addMouseListener(new ArdoiseListener(model));
 	}
 
-	// Réalisation du dessin
+	/**
+	 * Réalisation du dessin
+	 */
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		for (Point p : dessin) {
 			g.setColor(p.getPinceau().getCouleur());
-			switch (model.getForme()) {
+			switch (p.getPinceau().getForme()) {
 			case CARRE:
 				g.fillRect(p.getPosX(), p.getPosY(), p.getPinceau().getTaille(), p.getPinceau().getTaille());
 				break;
@@ -46,6 +67,9 @@ class Panneau extends JPanel implements Observateur {
 		}
 	}
 
+	/**
+	 * Mise à jour du dessin
+	 */
 	public void update(List<Point> dessin) {
 		this.dessin = dessin;
 		this.repaint();
